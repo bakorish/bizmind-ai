@@ -1,0 +1,9 @@
+fastapi==0.142.2
+uvicorn
+scikit-learn==1.9.1
+pandas
+numpy
+xgboost==3.4.1
+pydantic
+httpx
+pytest

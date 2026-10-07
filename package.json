@@ -1,0 +1,15 @@
+{
+  "name": "bizmind-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BizMind AI — AI-powered Business Intelligence & Decision Support Platform (monorepo)",
+  "scripts": {
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "seed": "cd backend && npm run seed",
+    "dev:ai": "cd ai-service && python -m uvicorn app.main:app --port 8001 --reload",
+    "dev:api": "cd backend && npm run dev",
+    "dev:web": "cd frontend && npm run dev",
+    "test": "cd backend && npm test && cd ../ai-service && python -m pytest tests/ -q",
+    "build": "cd frontend && npm run build"
+  }
+}

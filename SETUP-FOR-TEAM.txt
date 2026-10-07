@@ -1,0 +1,47 @@
+=========================================================
+ BIZMIND AI - How to run this project on your PC
+=========================================================
+
+PREREQUISITES (install once):
+  1. Node.js v18+      -> https://nodejs.org  (LTS version)
+  2. Python 3.10+      -> https://python.org  (tick "Add python.exe to PATH" while installing)
+
+STEPS:
+  1. Unzip this folder anywhere (e.g. D:\bizmind-ai)
+  2. Open the folder in VS Code (File > Open Folder)
+  3. Open terminal (Ctrl+`) and create 3 terminals (click "+")
+
+     Terminal 1  (AI service):
+        cd ai-service
+        pip install -r requirements.txt
+        python -m uvicorn app.main:app --port 8001
+
+     Terminal 2  (Backend API):
+        cd backend
+        npm install
+        npm run seed        <- creates the demo database (1 min)
+        npm run dev
+
+     Terminal 3  (Frontend):
+        cd frontend
+        npm install
+        npm run dev
+
+  4. Open http://localhost:5173 in your browser
+
+LOGIN (demo accounts, password: password123):
+     owner@bizmind.dev    -> Business Owner (full access)
+     manager@bizmind.dev  -> Manager
+     staff@bizmind.dev    -> Staff
+     admin@bizmind.dev    -> Platform Admin
+
+NEXT TIME: after the installs above are done once, you can simply
+     run  .\start.bat   in the terminal to start everything,
+     and  .\stop.bat    to stop.
+
+DATABASE:
+     Default is SQLite (zero setup, file at backend/data/bizmind.sqlite).
+     To use PostgreSQL instead, see README.md "Database setup" section.
+
+MORE DOCS: README.md, docs/ARCHITECTURE.md, docs/API.md, docs/TEST_REPORT.md
+=========================================================
