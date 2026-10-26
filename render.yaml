@@ -1,0 +1,34 @@
+# Render blueprint — deploys both backend services (free plan).
+# After connecting the GitHub repo at https://dashboard.render.com/blueprints
+# fill in the sync:false env vars when prompted.
+services:
+  # ---- Backend REST API (Node/Express) ----
+  - type: web
+    name: bizmind-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        sync: false            # set a long random string
+      - key: DATABASE_URL
+        sync: false            # Neon PostgreSQL connection string
+      - key: AI_SERVICE_URL
+        sync: false            # https://bizmind-ai.onrender.com
+      - key: CORS_ORIGIN
+        sync: false            # your Vercel frontend URL
+
+  # ---- AI/ML microservice (Python/FastAPI + XGBoost) ----
+  - type: web
+    name: bizmind-ai
+    runtime: python
+    plan: free
+    rootDir: ai-service
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health

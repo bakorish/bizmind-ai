@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const client = axios.create({ baseURL: '/api' });
+// Dev: Vite proxies /api -> localhost:5000. Production: VITE_API_URL points to the hosted API.
+const baseURL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api';
+const client = axios.create({ baseURL });
 
 client.interceptors.request.use((config) => {
   const token = localStorage.getItem('bizmind_token');

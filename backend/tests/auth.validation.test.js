@@ -1,4 +1,7 @@
 // FR-01/FR-02 + integration smoke test against a scratch SQLite DB.
+// Tests ALWAYS use SQLite regardless of the active .env (DB_DIALECT=postgres),
+// so `npm test` can never wipe the real PostgreSQL database.
+process.env.DB_DIALECT = 'sqlite';
 process.env.DB_STORAGE = './data/test.sqlite';
 process.env.JWT_SECRET = 'test-secret';
 
