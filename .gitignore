@@ -7,3 +7,6 @@ data/
 __pycache__/
 .pytest_cache/
 coverage/
+
+# local env files never go to git
+backend/.env.sqlite-backup
